@@ -6,7 +6,6 @@ import { Prediction } from "../types";
 
 export const createPrediction = async ( formData: FormData): Promise<Prediction> => {
     
-   try {
     noStore()
     
     const imageUrl = await fetch(
@@ -64,16 +63,13 @@ export const createPrediction = async ( formData: FormData): Promise<Prediction>
       credentials: "include",
     }).then((res) => res.json() as Promise<Prediction>);
 
-  
+   
+
     return prediction
-   } catch (error) {
-    console.log(error)
-   }
   };
 
   export const getPrediction=async(id:string)=>{
-    try {
-      noStore()
+    noStore()
     
     return fetch("https://replicate.com/api/predictions/" + id, {
         "headers": {
@@ -95,7 +91,4 @@ export const createPrediction = async ( formData: FormData): Promise<Prediction>
         "mode": "cors",
         "credentials": "include"
       }).then((res) => res.json() as Promise<Prediction>);
-    } catch (error) {
-      console.log(error)
-    }
   }
